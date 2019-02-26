@@ -34,19 +34,22 @@ This files are meant to enable WSGI support on a Debian or Ubuntu.
    └── venv
    ```
  - wsgi.py script is inside PROJECTAPP directory
-   ```
+
+```
    private/
    └── name.domain.tld
        ├── manage.py
        └── PROJECTAPP
            └── wsgi.py
-   ```
+```
 
  - you can rename PROJECTAPP with
 
-   ```
+
+```
    ~$ sudo sed -i 's/PROJECTAPP/{change_this}/' conf/web/name.domain.tld.apache2.conf
+
    ~$ sudo sed -i 's/PROJECTAPP/{change_this}/' conf/web/name.domain.tld.apache2.ssl.conf
-   ```
+```
 
  - this was tested using a django project.
