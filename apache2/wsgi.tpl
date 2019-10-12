@@ -24,10 +24,10 @@
         AssignUserID %user% %group%
     </IfModule>
     <IfModule mod_wsgi.c>
-        WSGIDaemonProcess %domain% user=%user% group=%user% processes=1 threads=5 display-name=%{GROUP} python-path=%home%/%user%/web/%domain%/private/venv/lib/python3.6/site-packages:%home%/%user%/web/%domain%/private/%domain%
-        WSGIProcessGroup %domain%
+        WSGIDaemonProcess app-%domain% user=%user% group=%user% processes=1 threads=5 display-name=%{GROUP} python-home=%home%/%user%/web/%domain%/private/venv/ python-path=%home%/%user%/web/%domain%/private/%domain% socket-user=%user%
+        WSGIProcessGroup app-%domain%
         WSGIApplicationGroup %{GLOBAL}
-        WSGIScriptAlias / %home%/%user%/web/%domain%/private/%domain%/PROJECTAPP/wsgi.py process-group=%domain%
+        WSGIScriptAlias / %home%/%user%/web/%domain%/private/%domain%/PROJECTAPP/wsgi.py process-group=app-%domain% application-group=%{GLOBAL}
     </IfModule>
 
     Alias /robots.txt %home%/%user%/web/%domain%/private/%domain%/static/robots.txt

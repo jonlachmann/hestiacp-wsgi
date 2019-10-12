@@ -25,6 +25,8 @@ This files are meant to enable WSGI support on a Debian or Ubuntu.
 
  - This is for Python3.
 
+ - Upgrade your mod_wsgi to 4.6 + (libapache2-mod-wsgi-py3 provides version 4.3)
+
  - You should create a venv in private dir inside your web domain.
 
  - Your project should be alogside venv named as domain_name.
