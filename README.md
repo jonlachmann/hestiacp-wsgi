@@ -1,4 +1,4 @@
-# Vesta CP - WSGI template
+# Hestia CP - WSGI template
 
 This files are meant to enable WSGI support on a Debian or Ubuntu.
 
@@ -10,16 +10,18 @@ This files are meant to enable WSGI support on a Debian or Ubuntu.
 
  2. Download wsgi template
     ```
-    ~$ cd /usr/local/vesta/data/templates/web
-    /web$ wget https://gitlab.com/neyder/vestacp-wsgi/-/archive/master/vestacp-wsgi-master.tar.gz \
+    ~$ cd /usr/local/hestia/data/templates/web/
+    /web$ wget https://github.com/jonlachmann/hestiacp-wsgi/-/archive/master/vestacp-wsgi-master.tar.gz \
        -O- | sudo tar xzvf - --strip-components=1
     ```
 
- 3. Create new package or set wsgi as apache template in the existing package
+ 3. If multiple php versions are enabled, put the files in /usr/local/hestia/data/templates/web/apache2/php-fpm
+ 
+ 4. Create a new package or set wsgi as apache template in the existing package
 
- 4. Add new user and assing him package with wsgi template
+ 5. Add a new user and assing it a package with wsgi template
 
- 5. Add new domain and check the result
+ 6. Add a new domain and check the result
 
 ## Hints
 
@@ -29,29 +31,19 @@ This files are meant to enable WSGI support on a Debian or Ubuntu.
 
  - You should create a venv in private dir inside your web domain.
 
- - Your project should be alogside venv named as domain_name.
+ - Your project should be alogside venv named as app.
    ```
    private
-   ├── name.domain.tld
+   ├── app
    └── venv
    ```
- - wsgi.py script is inside PROJECTAPP directory
+ - wsgi.py script is inside the app directory
 
 ```
    private/
-   └── name.domain.tld
+   └── app
        ├── manage.py
-       └── PROJECTAPP
-           └── wsgi.py
-```
-
- - you can rename PROJECTAPP with
-
-
-```
-   ~$ sudo sed -i 's/PROJECTAPP/{change_this}/' conf/web/name.domain.tld.apache2.conf
-
-   ~$ sudo sed -i 's/PROJECTAPP/{change_this}/' conf/web/name.domain.tld.apache2.ssl.conf
+       └── wsgi.py
 ```
 
  - this was tested using a django project.

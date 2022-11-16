@@ -7,10 +7,13 @@
     ScriptAlias /cgi-bin/ %home%/%user%/web/%domain%/cgi-bin/
     Alias /vstats/ %home%/%user%/web/%domain%/stats/
     Alias /error/ %home%/%user%/web/%domain%/document_errors/
-    SuexecUserGroup %user% %group%
+    #SuexecUserGroup %user% %group%
     CustomLog /var/log/%web_system%/domains/%domain%.bytes bytes
     CustomLog /var/log/%web_system%/domains/%domain%.log combined
     ErrorLog /var/log/%web_system%/domains/%domain%.error.log
+
+    IncludeOptional %home%/%user%/conf/web/%domain%/apache2.forcessl.conf*
+    
     <Directory %home%/%user%/web/%domain%/stats>
         AllowOverride All
     </Directory>
@@ -24,25 +27,11 @@
         AssignUserID %user% %group%
     </IfModule>
     <IfModule mod_wsgi.c>
-        WSGIDaemonProcess app-%domain% user=%user% group=%user% processes=1 threads=5 display-name=%{GROUP} python-home=%home%/%user%/web/%domain%/private/venv/ python-path=%home%/%user%/web/%domain%/private/%domain% socket-user=%user%
+        WSGIDaemonProcess app-%domain% user=%user% group=%user% processes=1 threads=5 display-name=%{GROUP} python-home=%home%/%user%/web/%domain%/private/venv/ python-path=%home%/%user%/web/%domain%/private socket-user=www-data
         WSGIProcessGroup app-%domain%
         WSGIApplicationGroup %{GLOBAL}
-        WSGIScriptAlias / %home%/%user%/web/%domain%/private/%domain%/PROJECTAPP/wsgi.py process-group=app-%domain% application-group=%{GLOBAL}
+        WSGIScriptAlias / %home%/%user%/web/%domain%/private/app/wsgi.py process-group=app-%domain% application-group=%{GLOBAL}
     </IfModule>
-
-    Alias /robots.txt %home%/%user%/web/%domain%/private/%domain%/static/robots.txt
-    Alias /favicon.ico %home%/%user%/web/%domain%/private/%domain%/static/favicon.ico
-
-    Alias /media/ %home%/%user%/web/%domain%/private/%domain%/media/
-    Alias /static/ %home%/%user%/web/%domain%/private/%domain%/static/
-
-    <Directory %home%/%user%/web/%domain%/private/%domain%/static>
-        Require all granted
-    </Directory>
-
-    <Directory %home%/%user%/web/%domain%/private/%domain%/media>
-        Require all granted
-    </Directory>
 
     <Directory %docroot%>
         AllowOverride FileInfo
@@ -52,13 +41,9 @@
         Order allow,deny
         Allow from all
     </Directory>
+    SetEnvIf Authorization .+ HTTP_AUTHORIZATION=$0
 
-#    <Directory %home%/%user%/web/%domain%/private/%domain%/PROJECTAPP>
-#        <Files wsgi.py>
-#            Require all granted
-#        </Files>
-#    </Directory>
-
-    IncludeOptional %home%/%user%/conf/web/%web_system%.%domain%.conf*
-
+    IncludeOptional %home%/%user%/conf/web/%domain%/%web_system%.conf_*
+    IncludeOptional /etc/apache2/conf.d/*.inc
+    
 </VirtualHost>
