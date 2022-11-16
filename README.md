@@ -10,18 +10,19 @@ This files are meant to enable WSGI support on a Debian or Ubuntu.
 
  2. Download wsgi template
     ```
-    ~$ cd /usr/local/hestia/data/templates/web/
-    /web$ wget https://github.com/jonlachmann/hestiacp-wsgi/archive/refs/heads/master.zip \
-       -O- | sudo tar xzvf - --strip-components=1
+    
+    ~$ wget https://github.com/jonlachmann/hestiacp-wsgi/archive/refs/heads/master.zip
+    ~$ unzip master.zip
+    ~$ cp hestiacp-wsgi-master/apache2/* /usr/local/hestia/data/templates/web/apache2/
     ```
 
- 3. If multiple php versions are enabled, put the files in /usr/local/hestia/data/templates/web/apache2/php-fpm
+ 3. If multiple php versions are enabled, put the files in /usr/local/hestia/data/templates/web/apache2/php-fpm/ instead.
  
- 4. Create a new package or set wsgi as apache template in the existing package
+ 4. Create a new package or set wsgi as apache template in the existing package.
 
- 5. Add a new user and assing it a package with wsgi template
+ 5. Add a new user and assing it a package with wsgi template.
 
- 6. Add a new domain and check the result
+ 6. Add a new domain and check the result.
 
 ## Hints
 
@@ -37,7 +38,7 @@ This files are meant to enable WSGI support on a Debian or Ubuntu.
    ├── app
    └── venv
    ```
- - wsgi.py script is inside the app directory
+ - wsgi.py script should be inside the app directory, you can create a symlink if it is stored elsewhere. 
 
 ```
    private/
