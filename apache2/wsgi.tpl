@@ -44,6 +44,5 @@
     SetEnvIf Authorization .+ HTTP_AUTHORIZATION=$0
 
     IncludeOptional %home%/%user%/conf/web/%domain%/%web_system%.conf_*
-    IncludeOptional /etc/apache2/conf.d/*.inc
     
 </VirtualHost>
