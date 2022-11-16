@@ -11,7 +11,7 @@ This files are meant to enable WSGI support on a Debian or Ubuntu.
  2. Download wsgi template
     ```
     ~$ cd /usr/local/hestia/data/templates/web/
-    /web$ wget https://github.com/jonlachmann/hestiacp-wsgi/-/archive/master/vestacp-wsgi-master.tar.gz \
+    /web$ wget https://github.com/jonlachmann/hestiacp-wsgi/archive/refs/heads/master.zip \
        -O- | sudo tar xzvf - --strip-components=1
     ```
 
