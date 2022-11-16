@@ -27,8 +27,8 @@
         AssignUserID %user% %group%
     </IfModule>
     <IfModule mod_wsgi.c>
-        WSGIDaemonProcess ssl-app-%domain% user=%user% group=%user% processes=1 threads=5 display-name=%{GROUP} python-home=%home%/%user%/web/%domain%/private/venv/ python-path=%home%/%user%/web/%domain%/private socket-user=www-data
-        WSGIProcessGroup ssl-app-%domain%
+        WSGIDaemonProcess app-%domain% user=%user% group=%user% processes=1 threads=5 display-name=%{GROUP} python-home=%home%/%user%/web/%domain%/private/venv/ python-path=%home%/%user%/web/%domain%/private socket-user=www-data
+        WSGIProcessGroup app-%domain%
         WSGIApplicationGroup %{GLOBAL}
         WSGIScriptAlias / %home%/%user%/web/%domain%/private/app/wsgi.py process-group=app-%domain% application-group=%{GLOBAL}
     </IfModule>

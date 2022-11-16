@@ -13,7 +13,7 @@ This files are meant to enable WSGI support on a Debian or Ubuntu.
     
     ~$ wget https://github.com/jonlachmann/hestiacp-wsgi/archive/refs/heads/master.zip
     ~$ unzip master.zip
-    ~$ cp hestiacp-wsgi-master/apache2/* /usr/local/hestia/data/templates/web/apache2/
+    ~$ sudo cp hestiacp-wsgi-master/apache2/* /usr/local/hestia/data/templates/web/apache2/
     ```
 
  3. If multiple php versions are enabled, put the files in /usr/local/hestia/data/templates/web/apache2/php-fpm/ instead.
