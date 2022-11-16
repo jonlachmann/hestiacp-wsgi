@@ -47,4 +47,28 @@ This files are meant to enable WSGI support on a Debian or Ubuntu.
        └── wsgi.py
 ```
 
- - this was tested using a django project.
+ - this was tested using a django project, the wsgi.py file had to be modified as below.
+
+```
+"""
+WSGI config for appname project.
+
+It exposes the WSGI callable as a module-level variable named ``application``.
+
+For more information on this file, see
+https://docs.djangoproject.com/en/3.2/howto/deployment/wsgi/
+"""
+
+import os
+import sys
+
+path = '/home/USERNAME/web/DOMAIN/private/app'
+if path not in sys.path:
+    sys.path.insert(0, path)
+
+from django.core.wsgi import get_wsgi_application
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'appname.settings')
+
+application = get_wsgi_application()
+```
